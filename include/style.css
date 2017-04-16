@@ -1,0 +1,39 @@
+@media all
+{
+	.widget.buttons
+	{
+		display: inline-block;
+		height: 14rem;
+		margin: 0 1vw;
+		max-height: 23vw;
+	    max-width: 23vw;
+		width: 14rem;
+	}
+
+		.widget.buttons a
+		{
+			border: 5px solid #fff;
+			border-radius: 50%;
+			display: block;
+			height: 100%;
+			overflow: hidden;
+			width: 100%;
+		}
+
+			.is_mobile .widget.buttons a
+			{
+				font-size: 1.4vw;
+			}
+
+			.widget.buttons p, .widget.buttons span
+			{
+				color: #fff;
+				display: block;
+				font-size: 2.6em;
+				padding: 0 .8em;
+				text-align: center;
+				margin-top: 50%;
+				-webkit-transform: translateY(-50%);
+				transform: translateY(-50%);
+			}
+}
