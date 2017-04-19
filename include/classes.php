@@ -13,7 +13,7 @@ class widget_buttons extends WP_Widget
 
 		parent::__construct('buttons-widget', __("Button", 'lang_buttons'), $widget_ops, $control_ops);
 
-		wp_enqueue_style('style_buttons', plugin_dir_url(__FILE__)."style.css");
+		mf_enqueue_style('style_buttons', plugin_dir_url(__FILE__)."style.css", get_plugin_version(__FILE__));
 	}
 
 	function widget($args, $instance)
