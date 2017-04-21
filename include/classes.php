@@ -68,35 +68,29 @@ class widget_buttons extends WP_Widget
 		$arr_data = array();
 		get_post_children(array('add_choose_here' => true, 'output_array' => true), $arr_data);
 
-		if($instance['button_text'] == '')
-		{
-			echo "<p>"
-				.get_file_button(array('name' => $this->get_field_name('button_image'), 'value' => $instance['button_image']))
-			."</p>";
-		}
+		echo "<div class='mf_form'>";
 
-		if($instance['button_image'] == '')
-		{
-			echo "<p>"
-				.show_textfield(array('name' => $this->get_field_name('button_text'), 'text' => __("Text", 'lang_buttons'), 'value' => $instance['button_text'], 'xtra' => " class='widefat'"))
-			."</p>
-			<p>"
-				.show_textfield(array('type' => 'color', 'name' => $this->get_field_name('button_background'), 'text' => __("Background Color", 'lang_buttons'), 'value' => $instance['button_background']))
-			."</p>";
-		}
+			if($instance['button_text'] == '')
+			{
+				echo get_file_button(array('name' => $this->get_field_name('button_image'), 'value' => $instance['button_image']));
+			}
 
-		if($instance['button_link'] == '')
-		{
-			echo "<p>"
-				.show_select(array('data' => $arr_data, 'name' => $this->get_field_name('button_page'), 'text' => __("Page", 'lang_buttons'), 'value' => $instance['button_page'], 'xtra' => " class='widefat'"))
-			."</p>";
-		}
+			if($instance['button_image'] == '')
+			{
+				echo show_textfield(array('name' => $this->get_field_name('button_text'), 'text' => __("Text", 'lang_buttons'), 'value' => $instance['button_text']))
+				.show_textfield(array('type' => 'color', 'name' => $this->get_field_name('button_background'), 'text' => __("Background Color", 'lang_buttons'), 'value' => $instance['button_background']));
+			}
 
-		if(!($instance['button_page'] > 0))
-		{
-			echo "<p>"
-				.show_textfield(array('name' => $this->get_field_name('button_link'), 'text' => __("Link", 'lang_buttons'), 'value' => $instance['button_link'], 'xtra' => " class='widefat'"))
-			."</p>";
-		}
+			if($instance['button_link'] == '')
+			{
+				echo show_select(array('data' => $arr_data, 'name' => $this->get_field_name('button_page'), 'text' => __("Page", 'lang_buttons'), 'value' => $instance['button_page']));
+			}
+
+			if(!($instance['button_page'] > 0))
+			{
+				echo show_textfield(array('name' => $this->get_field_name('button_link'), 'text' => __("Link", 'lang_buttons'), 'value' => $instance['button_link']));
+			}
+
+		echo "</div>";
 	}
 }
