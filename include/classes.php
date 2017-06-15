@@ -42,10 +42,10 @@ class widget_buttons extends WP_Widget
 		$instance = $old_instance;
 
 		$instance['button_image'] = isset($new_instance['button_image']) ? strip_tags($new_instance['button_image']) : "";
-		$instance['button_text'] = strip_tags($new_instance['button_text']);
-		$instance['button_background'] = strip_tags($new_instance['button_background']);
+		$instance['button_text'] = isset($new_instance['button_text']) ? strip_tags($new_instance['button_text']) : "";
+		$instance['button_background'] = isset($new_instance['button_background']) ? strip_tags($new_instance['button_background']) : "";
 		$instance['button_page'] = isset($new_instance['button_page']) ? strip_tags($new_instance['button_page']) : 0;
-		$instance['button_link'] = strip_tags($new_instance['button_link']);
+		$instance['button_link'] = isset($new_instance['button_link']) ? strip_tags($new_instance['button_link']) : "";
 
 		return $instance;
 	}
