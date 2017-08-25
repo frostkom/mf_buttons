@@ -3,7 +3,7 @@
 Plugin Name: MF Buttons
 Plugin URI: https://github.com/frostkom/mf_buttons
 Description: 
-Version: 1.1.12
+Version: 1.1.13
 Author: Martin Fors
 Author URI: http://frostkom.se
 Text Domain: lang_buttons
