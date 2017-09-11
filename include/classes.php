@@ -9,16 +9,22 @@ class widget_buttons extends WP_Widget
 			'description' => __("Display a button", 'lang_buttons')
 		);
 
-		$control_ops = array('id_base' => 'buttons-widget');
+		$this->arr_default = array(
+			'button_image' => "",
+			'button_text' => "",
+			'button_background' => "",
+			'button_page' => 0,
+			'button_link' => "",
+		);
 
-		parent::__construct('buttons-widget', __("Button", 'lang_buttons'), $widget_ops, $control_ops);
+		parent::__construct('buttons-widget', __("Button", 'lang_buttons'), $widget_ops);
 	}
 
 	function widget($args, $instance)
 	{
-		global $wpdb;
-
 		extract($args);
+
+		$instance = wp_parse_args((array)$instance, $this->arr_default);
 
 		if($instance['button_image'] != '' || $instance['button_text'] != '')
 		{
@@ -41,27 +47,20 @@ class widget_buttons extends WP_Widget
 	{
 		$instance = $old_instance;
 
-		$instance['button_image'] = isset($new_instance['button_image']) ? strip_tags($new_instance['button_image']) : "";
-		$instance['button_text'] = isset($new_instance['button_text']) ? strip_tags($new_instance['button_text']) : "";
-		$instance['button_background'] = isset($new_instance['button_background']) ? strip_tags($new_instance['button_background']) : "";
-		$instance['button_page'] = isset($new_instance['button_page']) ? strip_tags($new_instance['button_page']) : 0;
-		$instance['button_link'] = isset($new_instance['button_link']) ? strip_tags($new_instance['button_link']) : "";
+		$new_instance = wp_parse_args((array)$new_instance, $this->arr_default);
+
+		$instance['button_image'] = strip_tags($new_instance['button_image']);
+		$instance['button_text'] = strip_tags($new_instance['button_text']);
+		$instance['button_background'] = strip_tags($new_instance['button_background']);
+		$instance['button_page'] = strip_tags($new_instance['button_page']);
+		$instance['button_link'] = strip_tags($new_instance['button_link']);
 
 		return $instance;
 	}
 
 	function form($instance)
 	{
-		global $wpdb;
-
-		$defaults = array(
-			'button_image' => "",
-			'button_text' => "",
-			'button_background' => "",
-			'button_page' => 0,
-			'button_link' => "",
-		);
-		$instance = wp_parse_args((array)$instance, $defaults);
+		$instance = wp_parse_args((array)$instance, $this->arr_default);
 
 		$arr_data = array();
 		get_post_children(array('add_choose_here' => true, 'output_array' => true), $arr_data);
