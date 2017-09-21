@@ -85,7 +85,7 @@ class widget_buttons extends WP_Widget
 
 			if(!($instance['button_page'] > 0))
 			{
-				echo show_textfield(array('name' => $this->get_field_name('button_link'), 'text' => __("Link", 'lang_buttons'), 'value' => $instance['button_link']));
+				echo show_textfield(array('type' => 'url', 'name' => $this->get_field_name('button_link'), 'text' => __("Link", 'lang_buttons'), 'value' => $instance['button_link']));
 			}
 
 		echo "</div>";
