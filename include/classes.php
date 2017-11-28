@@ -49,11 +49,11 @@ class widget_buttons extends WP_Widget
 
 		$new_instance = wp_parse_args((array)$new_instance, $this->arr_default);
 
-		$instance['button_image'] = strip_tags($new_instance['button_image']);
-		$instance['button_text'] = strip_tags($new_instance['button_text']);
-		$instance['button_background'] = strip_tags($new_instance['button_background']);
-		$instance['button_page'] = strip_tags($new_instance['button_page']);
-		$instance['button_link'] = strip_tags($new_instance['button_link']);
+		$instance['button_image'] = sanitize_text_field($new_instance['button_image']);
+		$instance['button_text'] = sanitize_text_field($new_instance['button_text']);
+		$instance['button_background'] = sanitize_text_field($new_instance['button_background']);
+		$instance['button_page'] = sanitize_text_field($new_instance['button_page']);
+		$instance['button_link'] = esc_url_raw($new_instance['button_link']);
 
 		return $instance;
 	}
