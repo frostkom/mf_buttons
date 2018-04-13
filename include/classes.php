@@ -1,5 +1,18 @@
 <?php
 
+class mf_buttons
+{
+	function __construct()
+	{
+
+	}
+
+	function wp_head()
+	{
+		mf_enqueue_style('style_buttons', plugin_dir_url(__FILE__)."style.css", get_plugin_version(__FILE__));
+	}
+}
+
 class widget_buttons extends WP_Widget
 {
 	function __construct()
@@ -70,7 +83,6 @@ class widget_buttons extends WP_Widget
 
 			if($instance['button_text'] == '')
 			{
-				//echo get_file_button(array('name' => $this->get_field_name('button_image'), 'value' => $instance['button_image']));
 				echo get_media_library(array('name' => $this->get_field_name('button_image'), 'value' => $instance['button_image'], 'type' => 'image'));
 			}
 
