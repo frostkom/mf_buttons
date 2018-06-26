@@ -36,7 +36,6 @@ class widget_buttons extends WP_Widget
 	function widget($args, $instance)
 	{
 		extract($args);
-
 		$instance = wp_parse_args((array)$instance, $this->arr_default);
 
 		if($instance['button_image'] != '' || $instance['button_text'] != '')
@@ -60,7 +59,6 @@ class widget_buttons extends WP_Widget
 	function update($new_instance, $old_instance)
 	{
 		$instance = $old_instance;
-
 		$new_instance = wp_parse_args((array)$new_instance, $this->arr_default);
 
 		$instance['button_image'] = sanitize_text_field($new_instance['button_image']);
@@ -75,9 +73,6 @@ class widget_buttons extends WP_Widget
 	function form($instance)
 	{
 		$instance = wp_parse_args((array)$instance, $this->arr_default);
-
-		$arr_data = array();
-		get_post_children(array('add_choose_here' => true), $arr_data);
 
 		echo "<div class='mf_form'>";
 
@@ -94,6 +89,9 @@ class widget_buttons extends WP_Widget
 
 			if($instance['button_link'] == '')
 			{
+				$arr_data = array();
+				get_post_children(array('add_choose_here' => true), $arr_data);
+
 				echo show_select(array('data' => $arr_data, 'name' => $this->get_field_name('button_page'), 'text' => __("Page", 'lang_buttons'), 'value' => $instance['button_page']));
 			}
 
