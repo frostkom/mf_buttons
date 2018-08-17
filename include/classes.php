@@ -40,9 +40,29 @@ class widget_buttons extends WP_Widget
 
 		if($instance['button_image'] != '' || $instance['button_text'] != '')
 		{
-			//if($instance['button_image'] != ''){		$button_content = "<img src='".$instance['button_image']."'>";}
-			if($instance['button_image'] != ''){		$button_content = render_image_tag(array('src' => $instance['button_image']));}
-			else if($instance['button_text'] != ''){	$button_content = "<p>".$instance['button_text']."</p>";}
+			if($instance['button_image'] != '')
+			{
+				$button_content = render_image_tag(array('src' => $instance['button_image']));
+			}
+			
+			else if($instance['button_text'] != '')
+			{
+				$button_text_length = strlen($instance['button_text']);
+
+				$class_temp = "";
+
+				if($button_text_length > 30)
+				{
+					$class_temp = "length_30";
+				}
+
+				else if($button_text_length > 15)
+				{
+					$class_temp = "length_15";
+				}
+
+				$button_content = "<p".($class_temp != '' ? " class='".$class_temp."'" : "").">".$instance['button_text']."</p>";
+			}
 
 			if($instance['button_page'] > 0){			$button_link = get_permalink($instance['button_page']);}
 			else if($instance['button_link'] != ''){	$button_link = $instance['button_link'];}

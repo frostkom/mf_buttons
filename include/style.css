@@ -37,4 +37,14 @@
 				-webkit-transform: translateY(-50%);
 				transform: translateY(-50%);
 			}
+
+				.widget.buttons p.length_15
+				{
+					font-size: 2em;
+				}
+
+				.widget.buttons p.length_30
+				{
+					font-size: 1.5em;
+				}
 }
