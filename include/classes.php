@@ -44,7 +44,7 @@ class widget_buttons extends WP_Widget
 			{
 				$button_content = render_image_tag(array('src' => $instance['button_image']));
 			}
-			
+
 			else if($instance['button_text'] != '')
 			{
 				$button_text_length = strlen($instance['button_text']);
