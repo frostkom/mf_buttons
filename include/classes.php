@@ -102,7 +102,7 @@ class widget_buttons extends WP_Widget
 				.show_textfield(array('type' => 'color', 'name' => $this->get_field_name('button_background'), 'text' => __("Background Color", 'lang_buttons'), 'value' => $instance['button_background']));
 			}
 			
-			else //if($instance['button_text'] == '')
+			if($instance['button_text'] == '' || $instance['button_image'] != '')
 			{
 				echo get_media_library(array('name' => $this->get_field_name('button_image'), 'value' => $instance['button_image'], 'type' => 'image'));
 			}
@@ -115,7 +115,7 @@ class widget_buttons extends WP_Widget
 				echo show_select(array('data' => $arr_data, 'name' => $this->get_field_name('button_page'), 'text' => __("Page", 'lang_buttons'), 'value' => $instance['button_page']));
 			}
 
-			else //if(!($instance['button_page'] > 0))
+			if(!($instance['button_page'] > 0))
 			{
 				echo show_textfield(array('type' => 'url', 'name' => $this->get_field_name('button_link'), 'text' => __("Link", 'lang_buttons'), 'value' => $instance['button_link']));
 			}
