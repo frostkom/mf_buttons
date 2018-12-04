@@ -101,7 +101,7 @@ class widget_buttons extends WP_Widget
 				echo show_textfield(array('name' => $this->get_field_name('button_text'), 'text' => __("Text", 'lang_buttons'), 'value' => $instance['button_text']))
 				.show_textfield(array('type' => 'color', 'name' => $this->get_field_name('button_background'), 'text' => __("Background Color", 'lang_buttons'), 'value' => $instance['button_background']));
 			}
-			
+
 			if($instance['button_text'] == '' || $instance['button_image'] != '')
 			{
 				echo get_media_library(array('name' => $this->get_field_name('button_image'), 'value' => $instance['button_image'], 'type' => 'image'));
