@@ -2,14 +2,17 @@
 
 class mf_buttons
 {
-	function __construct()
-	{
-
-	}
+	function __construct(){}
 
 	function wp_head()
 	{
-		mf_enqueue_style('style_buttons', plugin_dir_url(__FILE__)."style.css", get_plugin_version(__FILE__));
+		if(apply_filters('get_widget_search', 'buttons-widget') > 0)
+		{
+			$plugin_include_url = plugin_dir_url(__FILE__);
+			$plugin_version = get_plugin_version(__FILE__);
+
+			mf_enqueue_style('style_buttons', $plugin_include_url."style.css", $plugin_version);
+		}
 	}
 }
 
