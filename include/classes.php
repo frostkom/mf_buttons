@@ -33,7 +33,7 @@ class widget_buttons extends WP_Widget
 			'button_link' => "",
 		);
 
-		parent::__construct('buttons-widget', __("Button", 'lang_buttons'), $widget_ops);
+		parent::__construct($widget_ops['classname'].'-widget', __("Button", 'lang_buttons'), $widget_ops);
 	}
 
 	function widget($args, $instance)
@@ -107,7 +107,7 @@ class widget_buttons extends WP_Widget
 
 			if($instance['button_text'] == '' || $instance['button_image'] != '')
 			{
-				echo get_media_library(array('name' => $this->get_field_name('button_image'), 'value' => $instance['button_image'], 'type' => 'image'));
+				echo get_media_library(array('type' => 'image', 'name' => $this->get_field_name('button_image'), 'value' => $instance['button_image']));
 			}
 
 			if($instance['button_link'] == '')
