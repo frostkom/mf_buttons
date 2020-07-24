@@ -14,6 +14,11 @@ class mf_buttons
 			mf_enqueue_style('style_buttons', $plugin_include_url."style.css", $plugin_version);
 		}
 	}
+
+	function widgets_init()
+	{
+		register_widget('widget_buttons');
+	}
 }
 
 class widget_buttons extends WP_Widget
@@ -26,11 +31,12 @@ class widget_buttons extends WP_Widget
 		);
 
 		$this->arr_default = array(
-			'button_image' => "",
-			'button_text' => "",
-			'button_background' => "",
+			'button_image' => '',
+			'button_text' => '',
+			'button_text_color' => '#ffffff',
+			'button_background' => '',
 			'button_page' => 0,
-			'button_link' => "",
+			'button_link' => '',
 		);
 
 		parent::__construct($widget_ops['classname'].'-widget', __("Button", 'lang_buttons'), $widget_ops);
@@ -54,17 +60,15 @@ class widget_buttons extends WP_Widget
 
 				$class_temp = "";
 
-				if($button_text_length > 30)
-				{
-					$class_temp = "length_30";
-				}
+				if($button_text_length > 30){		$class_temp = "length_30";}
+				else if($button_text_length > 15){	$class_temp = "length_15";}
 
-				else if($button_text_length > 15)
-				{
-					$class_temp = "length_15";
-				}
-
-				$button_content = "<p".($class_temp != '' ? " class='".$class_temp."'" : "").">".$instance['button_text']."</p>";
+				$button_content = "<p"
+					.($class_temp != '' ? " class='".$class_temp."'" : "")
+					.($instance['button_text_color'] != '' ? " style='color: ".$instance['button_text_color']."'" : "")
+				.">"
+					.$instance['button_text']
+				."</p>";
 			}
 
 			if($instance['button_page'] > 0){			$button_link = get_permalink($instance['button_page']);}
@@ -72,7 +76,9 @@ class widget_buttons extends WP_Widget
 			else{										$button_link = "#";}
 
 			echo $before_widget
-				."<a href='".$button_link."'".($instance['button_background'] != '' ? " style='background: ".$instance['button_background']."'" : "").">"
+				."<a href='".$button_link."'"
+					.($instance['button_background'] != '' ? " style='background: ".$instance['button_background']."'" : "")
+				.">"
 					.$button_content
 				."</a>"
 			.$after_widget;
@@ -86,6 +92,7 @@ class widget_buttons extends WP_Widget
 
 		$instance['button_image'] = sanitize_text_field($new_instance['button_image']);
 		$instance['button_text'] = sanitize_text_field($new_instance['button_text']);
+		$instance['button_text_color'] = sanitize_text_field($new_instance['button_text_color']);
 		$instance['button_background'] = sanitize_text_field($new_instance['button_background']);
 		$instance['button_page'] = sanitize_text_field($new_instance['button_page']);
 		$instance['button_link'] = esc_url_raw($new_instance['button_link']);
@@ -102,6 +109,7 @@ class widget_buttons extends WP_Widget
 			if($instance['button_image'] == '')
 			{
 				echo show_textfield(array('name' => $this->get_field_name('button_text'), 'text' => __("Text", 'lang_buttons'), 'value' => $instance['button_text']))
+				.show_textfield(array('type' => 'color', 'name' => $this->get_field_name('button_text_color'), 'text' => __("Text Color", 'lang_buttons'), 'value' => $instance['button_text_color']))
 				.show_textfield(array('type' => 'color', 'name' => $this->get_field_name('button_background'), 'text' => __("Background Color", 'lang_buttons'), 'value' => $instance['button_background']));
 			}
 
