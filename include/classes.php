@@ -25,7 +25,7 @@ class widget_buttons extends WP_Widget
 {
 	function __construct()
 	{
-		$widget_ops = array(
+		$this->widget_ops = array(
 			'classname' => 'buttons',
 			'description' => __("Display a button", 'lang_buttons')
 		);
@@ -39,7 +39,7 @@ class widget_buttons extends WP_Widget
 			'button_link' => '',
 		);
 
-		parent::__construct($widget_ops['classname'].'-widget', __("Button", 'lang_buttons'), $widget_ops);
+		parent::__construct(str_replace("_", "-", $this->widget_ops['classname']).'-widget', __("Button", 'lang_buttons'), $this->widget_ops);
 	}
 
 	function widget($args, $instance)
