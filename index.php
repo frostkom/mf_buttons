@@ -3,7 +3,7 @@
 Plugin Name: MF Buttons
 Plugin URI: https://github.com/frostkom/mf_buttons
 Description: 
-Version: 1.3.9
+Version: 1.3.10
 Licence: GPLv2 or later
 Author: Martin Fors
 Author URI: https://frostkom.se
@@ -18,11 +18,16 @@ include_once("include/classes.php");
 
 $obj_buttons = new mf_buttons();
 
-if(!is_admin())
+if(is_admin())
+{
+	add_action('admin_init', array($obj_backup, 'admin_init'), 0);
+}
+
+else
 {
 	add_action('wp_head', array($obj_buttons, 'wp_head'), 0);
 }
 
 add_action('widgets_init', array($obj_buttons, 'widgets_init'));
 
-load_plugin_textdomain('lang_buttons', false, dirname(plugin_basename(__FILE__)).'/lang/');
+load_plugin_textdomain('lang_buttons', false, dirname(plugin_basename(__FILE__))."/lang/");
