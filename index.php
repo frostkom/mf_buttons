@@ -3,7 +3,7 @@
 Plugin Name: MF Buttons
 Plugin URI: https://github.com/frostkom/mf_buttons
 Description: 
-Version: 1.3.10
+Version: 1.3.11
 Licence: GPLv2 or later
 Author: Martin Fors
 Author URI: https://frostkom.se
@@ -20,7 +20,7 @@ $obj_buttons = new mf_buttons();
 
 if(is_admin())
 {
-	add_action('admin_init', array($obj_backup, 'admin_init'), 0);
+	add_action('admin_init', array($obj_buttons, 'admin_init'), 0);
 }
 
 else
