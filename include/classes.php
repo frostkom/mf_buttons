@@ -4,14 +4,6 @@ class mf_buttons
 {
 	function __construct(){}
 
-	function admin_init()
-	{
-		if(!is_plugin_active("mf_base/index.php"))
-		{
-			deactivate_plugins(str_replace("include/classes.php", "index.php", plugin_basename(__FILE__)));
-		}
-	}
-
 	function wp_head()
 	{
 		if(!is_plugin_active("mf_widget_logic_select/index.php") || apply_filters('get_widget_search', 'buttons-widget') > 0)
