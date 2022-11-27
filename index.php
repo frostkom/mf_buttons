@@ -2,11 +2,11 @@
 /*
 Plugin Name: MF Buttons
 Plugin URI: https://github.com/frostkom/mf_buttons
-Description: 
-Version: 1.3.14
+Description:
+Version: 1.3.15
 Licence: GPLv2 or later
 Author: Martin Fors
-Author URI: https://frostkom.se
+Author URI: https://martinfors.se
 Text Domain: lang_buttons
 Domain Path: /lang
 

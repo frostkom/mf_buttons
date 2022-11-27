@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-21 10:25+0100\n"
+"POT-Creation-Date: 2022-06-20 14:58+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Martin Fors\n"
 "Language-Team: \n"
@@ -15,27 +15,21 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../include/classes.php:9
 msgid "Display a button"
 msgstr "Visa en knapp"
 
-#: ../include/classes.php:20
 msgid "Button"
 msgstr "Knapp"
 
-#: ../include/classes.php:77
-msgid "Text"
-msgstr "Text"
+msgid "Text Color"
+msgstr "Textfärg"
 
-#: ../include/classes.php:78
 msgid "Background Color"
 msgstr "Bakgrundsfärg"
 
-#: ../include/classes.php:83
 msgid "Page"
 msgstr "Sida"
 
-#: ../include/classes.php:88
 msgid "Link"
 msgstr "Länk"
 
