@@ -75,7 +75,7 @@ class widget_buttons extends WP_Widget
 			else if($instance['button_link'] != ''){	$button_link = $instance['button_link'];}
 			else{										$button_link = "#";}
 
-			echo $before_widget
+			echo apply_filters('filter_before_widget', $before_widget)
 				."<a href='".$button_link."'"
 					.($instance['button_background'] != '' ? " style='background: ".$instance['button_background']."'" : "")
 				.">"
