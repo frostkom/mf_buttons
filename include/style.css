@@ -1,6 +1,21 @@
 @media all
 {
-	.widget.buttons
+	.widget.buttons .form_button p
+	{
+		margin: 0;
+	}
+
+	.widget.buttons .button_default
+	{
+		
+	}
+	
+		.widget.buttons .button_circle a
+		{
+			display: inline-block;
+		}
+
+	.widget.buttons .button_circle
 	{
 		display: inline-block;
 		height: 14rem;
@@ -11,7 +26,7 @@
 		width: 14rem;
 	}
 
-		.widget.buttons a
+		.widget.buttons .button_circle a
 		{
 			border: 5px solid #fff;
 			border-radius: 50%;
@@ -21,12 +36,12 @@
 			width: 100%;
 		}
 
-			.is_mobile .widget.buttons a
+			.is_mobile .widget.buttons .button_circle a
 			{
 				font-size: 1.4vw;
 			}
 
-			.widget.buttons p, .widget.buttons span
+			.widget.buttons .button_circle p, .widget.buttons .button_circle span
 			{
 				color: #fff;
 				display: block;
@@ -38,12 +53,12 @@
 				transform: translateY(-50%);
 			}
 
-				.widget.buttons p.length_15
+				.widget.buttons .button_circle p.length_15
 				{
 					font-size: 2em;
 				}
 
-				.widget.buttons p.length_30
+				.widget.buttons .button_circle p.length_30
 				{
 					font-size: 1.5em;
 				}

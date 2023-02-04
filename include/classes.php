@@ -31,15 +31,26 @@ class widget_buttons extends WP_Widget
 		);
 
 		$this->arr_default = array(
+			'button_style' => 'button_circle',
 			'button_image' => '',
 			'button_text' => '',
-			'button_text_color' => '#ffffff',
 			'button_background' => '',
+			'button_text_color' => '', //#ffffff
 			'button_page' => 0,
 			'button_link' => '',
 		);
 
 		parent::__construct(str_replace("_", "-", $this->widget_ops['classname']).'-widget', __("Button", 'lang_buttons'), $this->widget_ops);
+	}
+
+	function get_style_for_select()
+	{
+		return array(
+			'button_circle' => __("Circle", 'lang_buttons'),
+			'button-primary' => __("Primary", 'lang_buttons'),
+			'button-secondary' => __("Secondary", 'lang_buttons'),
+			'color_button_negative' => __("Negative", 'lang_buttons'),
+		);
 	}
 
 	function widget($args, $instance)
@@ -76,11 +87,15 @@ class widget_buttons extends WP_Widget
 			else{										$button_link = "#";}
 
 			echo apply_filters('filter_before_widget', $before_widget)
-				."<a href='".$button_link."'"
-					.($instance['button_background'] != '' ? " style='background: ".$instance['button_background']."'" : "")
-				.">"
-					.$button_content
-				."</a>"
+				."<div class='form_button'>
+					<div class='".(in_array($instance['button_style'], array('button-primary', 'button-secondary', 'color_button_negative')) ? "button " : "").$instance['button_style']."'>
+						<a href='".$button_link."'"
+							.($instance['button_background'] != '' ? " style='background: ".$instance['button_background']."'" : "")
+						.">"
+							.$button_content
+						."</a>
+					</div>
+				</div>"
 			.$after_widget;
 		}
 	}
@@ -90,10 +105,11 @@ class widget_buttons extends WP_Widget
 		$instance = $old_instance;
 		$new_instance = wp_parse_args((array)$new_instance, $this->arr_default);
 
+		$instance['button_style'] = sanitize_text_field($new_instance['button_style']);
 		$instance['button_image'] = sanitize_text_field($new_instance['button_image']);
 		$instance['button_text'] = sanitize_text_field($new_instance['button_text']);
-		$instance['button_text_color'] = sanitize_text_field($new_instance['button_text_color']);
 		$instance['button_background'] = sanitize_text_field($new_instance['button_background']);
+		$instance['button_text_color'] = sanitize_text_field($new_instance['button_text_color']);
 		$instance['button_page'] = sanitize_text_field($new_instance['button_page']);
 		$instance['button_link'] = esc_url_raw($new_instance['button_link']);
 
@@ -104,13 +120,20 @@ class widget_buttons extends WP_Widget
 	{
 		$instance = wp_parse_args((array)$instance, $this->arr_default);
 
-		echo "<div class='mf_form'>";
+		echo "<div class='mf_form'>"
+			.show_select(array('data' => $this->get_style_for_select(), 'name' => $this->get_field_name('button_style'), 'text' => __("Style", 'lang_buttons'), 'value' => $instance['button_style']));
 
 			if($instance['button_image'] == '')
 			{
-				echo show_textfield(array('name' => $this->get_field_name('button_text'), 'text' => __("Text", 'lang_buttons'), 'value' => $instance['button_text']))
-				.show_textfield(array('type' => 'color', 'name' => $this->get_field_name('button_text_color'), 'text' => __("Text Color", 'lang_buttons'), 'value' => $instance['button_text_color']))
-				.show_textfield(array('type' => 'color', 'name' => $this->get_field_name('button_background'), 'text' => __("Background Color", 'lang_buttons'), 'value' => $instance['button_background']));
+				echo show_textfield(array('name' => $this->get_field_name('button_text'), 'text' => __("Text", 'lang_buttons'), 'value' => $instance['button_text']));
+
+				if($instance['button_style'] == 'button_circle')
+				{
+					echo "<div class='flex_flow'>"
+						.show_textfield(array('type' => 'color', 'name' => $this->get_field_name('button_background'), 'text' => __("Background Color", 'lang_buttons'), 'value' => $instance['button_background']))
+						.show_textfield(array('type' => 'color', 'name' => $this->get_field_name('button_text_color'), 'text' => __("Text Color", 'lang_buttons'), 'value' => $instance['button_text_color']))
+					."</div>";
+				}
 			}
 
 			if($instance['button_text'] == '' || $instance['button_image'] != '')
