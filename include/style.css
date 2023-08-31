@@ -5,11 +5,8 @@
 		margin: 0;
 	}
 
-	.widget.buttons .button_default
-	{
-		
-	}
-	
+	.widget.buttons .button_default{}
+
 		.widget.buttons .button_circle a
 		{
 			display: inline-block;

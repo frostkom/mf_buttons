@@ -23,14 +23,26 @@ class mf_buttons
 
 class widget_buttons extends WP_Widget
 {
+	var $widget_ops = array();
+
+	var $arr_default = array(
+		'button_style' => 'button_circle',
+		'button_image' => '',
+		'button_text' => '',
+		'button_background' => '',
+		'button_text_color' => '', //#ffffff
+		'button_page' => 0,
+		'button_link' => '',
+	);
+
 	function __construct()
 	{
 		$this->widget_ops = array(
 			'classname' => 'buttons',
-			'description' => __("Display a button", 'lang_buttons')
+			'description' => __("Display a button", 'lang_buttons'),
 		);
 
-		$this->arr_default = array(
+		/*$this->arr_default = array(
 			'button_style' => 'button_circle',
 			'button_image' => '',
 			'button_text' => '',
@@ -38,7 +50,7 @@ class widget_buttons extends WP_Widget
 			'button_text_color' => '', //#ffffff
 			'button_page' => 0,
 			'button_link' => '',
-		);
+		);*/
 
 		parent::__construct(str_replace("_", "-", $this->widget_ops['classname']).'-widget', __("Button", 'lang_buttons'), $this->widget_ops);
 	}
